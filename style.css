@@ -466,6 +466,7 @@ body {
 .impossible {
     pointer-events: none;
 }
+
 /* Stickers animation */
 .stickers-container {
     position: fixed;
@@ -529,14 +530,152 @@ body {
     }
 }
 
-/* Mobile adjustments */
-@media (max-width: 500px) {
-    .sticker {
-        width: 60px;
-        height: 60px;
+/* ============ SECRET MODE FIXED ============ */
+#secret-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+    z-index: 9999;
+    overflow: hidden;
+}
+
+#secret-screen.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.secret-container {
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    padding: 20px;
+    z-index: 2;
+}
+
+.secret-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #ff6b8b;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.8s ease;
+}
+
+.secret-message-box {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    margin: 30px 0;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    min-height: 200px;
+    animation: fadeInUp 0.8s ease 0.3s both;
+    position: relative;
+    overflow: hidden;
+}
+
+.secret-message-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #ffafbd, #ffc3a0);
+}
+
+.secret-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    text-align: left;
+    min-height: 180px;
+}
+
+#typed-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+
+#typed-text::after {
+    content: '|';
+    animation: cursorBlink 1s infinite;
+    color: #ff6b8b;
+    font-weight: bold;
+}
+
+.secret-btn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 20px 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.8s ease 0.6s both;
+    position: relative;
+    overflow: hidden;
+}
+
+.secret-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(255, 107, 107, 0.4);
+}
+
+.secret-btn:active {
+    transform: translateY(-1px);
+}
+
+.secret-footer {
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    animation: fadeInUp 0.8s ease 0.9s both;
+}
+
+.secret-hint {
+    animation: gentlePulse 3s infinite;
+}
+
+/* Animations for secret mode */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
-/* Mobile responsiveness */
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@keyframes gentlePulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* Remove petal styles completely - they're causing issues */
+.petal {
+    display: none !important;
+}
+
+/* Mobile adjustments */
 @media (max-width: 500px) {
     .container {
         padding: 15px;
@@ -567,9 +706,31 @@ body {
     .celebration-title {
         font-size: 2rem;
     }
+    
+    .sticker {
+        width: 60px;
+        height: 60px;
+    }
+    
+    /* Secret mode mobile */
+    .secret-title {
+        font-size: 2rem;
+    }
+    
+    .secret-message-box {
+        padding: 25px 20px;
+    }
+    
+    .secret-text {
+        font-size: 1rem;
+    }
+    
+    .secret-btn {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+    }
 }
 
-/* For very small screens */
 @media (max-width: 350px) {
     .buttons-container {
         flex-direction: column;
@@ -578,175 +739,5 @@ body {
     .btn {
         width: 100%;
         margin: 8px 0;
-    }
-    /* ====== SECRET MODE FIXED ====== */
-#secret-screen {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
-    z-index: 9999;
-    padding: 20px;
-}
-
-#secret-screen.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.secret-container {
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-}
-
-.secret-heart {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 40px;
-    position: relative;
-    animation: heartbeat 1.5s infinite;
-}
-
-.secret-heart-pulse {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    animation: pulseRing 2s ease-out infinite;
-}
-
-.secret-heart-pulse.delay-1 {
-    animation-delay: 0.5s;
-}
-
-.secret-heart-pulse.delay-2 {
-    animation-delay: 1s;
-}
-
-.secret-heart span {
-    font-size: 4rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-@keyframes pulseRing {
-    0% { transform: scale(0.8); opacity: 0.8; }
-    100% { transform: scale(1.5); opacity: 0; }
-}
-
-.secret-title {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
-    color: #ff6b8b;
-    margin-bottom: 30px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.secret-message-box {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    margin: 30px 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    min-height: 200px;
-}
-
-.secret-text {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #555;
-    text-align: left;
-}
-
-#typed-text {
-    font-family: 'Poppins', sans-serif;
-    min-height: 180px;
-}
-
-#typed-text::after {
-    content: '|';
-    animation: cursorBlink 1s infinite;
-    color: #ff6b8b;
-}
-
-@keyframes cursorBlink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-.secret-btn {
-    background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    border-radius: 50px;
-    cursor: pointer;
-    margin: 20px 0;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
-    transition: all 0.3s ease;
-}
-
-.secret-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
-}
-
-.secret-footer {
-    margin-top: 20px;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
-}
-
-/* Petal animation */
-.petal {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 50% 0 50% 50%;
-    transform: rotate(45deg);
-    animation: petalFall 15s linear infinite;
-    z-index: -1;
-}
-
-@keyframes petalFall {
-    0% {
-        top: -20px;
-        transform: rotate(45deg) translateX(0) rotate(0deg);
-        opacity: 0;
-    }
-    10% { opacity: 1; }
-    90% { opacity: 0.7; }
-    100% {
-        top: 100vh;
-        transform: rotate(45deg) translateX(100px) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-@media (max-width: 500px) {
-    .secret-title {
-        font-size: 2rem;
-    }
-    .secret-message-box {
-        padding: 20px;
-    }
-    .secret-text {
-        font-size: 1rem;
-    }
-    .secret-btn {
-        padding: 12px 25px;
-        font-size: 1rem;
     }
 }
