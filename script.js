@@ -396,13 +396,12 @@ document.addEventListener('DOMContentLoaded', function() {
         let typingTimeout = null;
         let lastShakeTime = 0;
         
-        const secretMessage = `Alright Noor, secret mode unlocked 😼
+        const secretMessage = `I joke a lot, but genuinely, you're someone who makes things feel easy hazyyy.
+        Talking to you never feels forced, and that's kinda rare these days.
+This site, the jokes, the chaos, all just a dumb little way of saying 
+"Yeah, you matter as a friend" ❤️
 
-I joke a lot, but genuinely, you're someone who makes things feel easy. Talking to you never feels forced, and that's kinda rare these days.
-
-This site, the jokes, the chaos, all just a dumb little way of saying "Yeah, you matter as a friend" ❤️
-
-Okay done before this gets awkward 😂✌️`;
+Okay, done before this gets awkward 😂✌️`;
         
         // Type message with typing animation
         function typeMessage() {
