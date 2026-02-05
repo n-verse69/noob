@@ -396,12 +396,13 @@ document.addEventListener('DOMContentLoaded', function() {
         let typingTimeout = null;
         let lastShakeTime = 0;
         
-        const secretMessage = `I joke a lot, but genuinely, you're someone who makes things feel easy hazyyy.
-        Talking to you never feels forced, and that's kinda rare these days.
-        This site, the jokes, the chaos, all just a dumb little way of saying 
-        "Yeah, you matter as a friend" ❤️
+        const secretMessage = `I joke a lot, but genuinely talking to you feels easy, hazyyy.
+Our chats are never planned, never serious on purpose, but somehow they fit into my day naturally.
+You’re the first notification I see and the last one before the day ends and yeah, that quietly makes a difference.
 
-        Okay, done before this gets awkward 😂✌️`;
+This site, the jokes, the chaos it’s just a small, coded way of saying you matter to me as a friend, more than you probably realize ❤️
+
+Okay, stopping here before this gets awkward 😂✌️`;
         
         // Type message with typing animation
         function typeMessage() {
