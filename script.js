@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let noClickCount = 0;
     let isNoButtonMoving = false;
     let noButtonMoveInterval;
-    let originalNoClickCount = 0;
     // Initialize the page
     initPage();
     
@@ -29,6 +28,14 @@ document.addEventListener('DOMContentLoaded', function() {
     yesBtn.addEventListener('click', handleYesClick);
     noBtn.addEventListener('click', handleNoClick);
     restartBtn.addEventListener('click', restartExperience);
+
+
+// === CHAT SYSTEM VARIABLES ===
+let chatHistory = [];
+let currentStep = 0;
+let userChoices = [];
+let originalNoClickCount = 0;
+// ============================
     
     // Initialize page with background hearts and intro screen
     function initPage() {
