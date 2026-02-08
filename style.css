@@ -866,6 +866,479 @@ body {
     }
 }
 
+/* ============ ENHANCED SECRET MODE ============ */
+#secret-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        #ffafbd 0%, 
+        #ffc3a0 30%, 
+        #ffe4e1 70%, 
+        #fff0f5 100%);
+    z-index: 9999;
+    overflow: hidden;
+}
+
+#secret-screen.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: gentleFadeIn 1.2s ease;
+}
+
+/* Background glow effect */
+.secret-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, 
+        rgba(255, 182, 193, 0.2) 0%,
+        rgba(255, 182, 193, 0.1) 40%,
+        transparent 70%);
+    animation: gentlePulse 8s infinite alternate;
+}
+
+/* Enhanced background hearts */
+.secret-hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.secret-heart {
+    position: absolute;
+    font-size: 20px;
+    opacity: 0.3;
+    animation: floatUp 15s linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.4;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-100px) translateX(20px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Secret header */
+.secret-header {
+    text-align: center;
+    margin-bottom: 30px;
+    z-index: 2;
+    position: relative;
+}
+
+.secret-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: gentleFloat 3s ease-in-out infinite;
+}
+
+.secret-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #ff6b8b;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.secret-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    color: #ff8fa3;
+    opacity: 0.8;
+    animation: fadeInUp 0.8s ease 0.4s both;
+}
+
+/* Enhanced message box */
+.secret-message-box {
+    background: linear-gradient(145deg, #ffffff, #fff9fb);
+    padding: 40px 30px;
+    border-radius: 25px;
+    margin: 30px 0;
+    box-shadow: 
+        0 20px 40px rgba(255, 107, 139, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        0 0 0 1px rgba(255, 182, 193, 0.2);
+    backdrop-filter: blur(20px);
+    min-height: 300px;
+    position: relative;
+    z-index: 2;
+    animation: messageBoxAppear 1s ease 0.6s both;
+    overflow: hidden;
+}
+
+@keyframes messageBoxAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Decorative corners */
+.corner {
+    position: absolute;
+    font-size: 20px;
+    color: #ffb6c1;
+    opacity: 0.5;
+}
+
+.corner-tl { top: 15px; left: 15px; }
+.corner-tr { top: 15px; right: 15px; }
+.corner-bl { bottom: 15px; left: 15px; }
+.corner-br { bottom: 15px; right: 15px; }
+
+/* Message border */
+.message-border {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px dashed rgba(255, 182, 193, 0.3);
+    border-radius: 15px;
+    pointer-events: none;
+}
+
+/* Message content */
+.secret-message-content {
+    position: relative;
+    z-index: 2;
+}
+
+.secret-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #5a4a4a;
+    text-align: left;
+    min-height: 250px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Custom scrollbar */
+.secret-text::-webkit-scrollbar {
+    width: 4px;
+}
+
+.secret-text::-webkit-scrollbar-track {
+    background: rgba(255, 182, 193, 0.1);
+    border-radius: 10px;
+}
+
+.secret-text::-webkit-scrollbar-thumb {
+    background: #ffb6c1;
+    border-radius: 10px;
+}
+
+/* Typing animation */
+#typed-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+#typed-text::after {
+    content: '|';
+    animation: cursorBlink 1s infinite;
+    color: #ff6b8b;
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+/* Typing indicator */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    opacity: 0.7;
+    animation: fadeIn 0.5s ease 1s both;
+}
+
+.typing-text {
+    font-size: 0.9rem;
+    color: #ff8fa3;
+    font-style: italic;
+}
+
+.typing-dots {
+    display: flex;
+    gap: 3px;
+}
+
+.typing-dots span {
+    width: 6px;
+    height: 6px;
+    background-color: #ff8fa3;
+    border-radius: 50%;
+    animation: dotPulse 1.4s ease-in-out infinite;
+}
+
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotPulse {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-3px); opacity: 1; }
+}
+
+/* Wax seal */
+.wax-seal {
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ff6b8b, #ff8fa3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+    animation: sealAppear 0.8s ease 1.2s both;
+    z-index: 3;
+}
+
+.seal-icon {
+    font-size: 24px;
+    position: absolute;
+    opacity: 0.5;
+}
+
+.seal-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+@keyframes sealAppear {
+    0% {
+        transform: scale(0) rotate(-180deg);
+    }
+    100% {
+        transform: scale(1) rotate(0);
+    }
+}
+
+/* Enhanced button */
+.secret-btn {
+    background: linear-gradient(135deg, #ff6b8b 0%, #ff8fa3 100%);
+    color: white;
+    border: none;
+    padding: 18px 40px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 20px 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    box-shadow: 
+        0 10px 25px rgba(255, 107, 139, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.8s ease 1.4s both;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.secret-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent);
+    transition: left 0.7s;
+}
+
+.secret-btn:hover::before {
+    left: 100%;
+}
+
+.secret-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 15px 30px rgba(255, 107, 139, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.secret-btn:active {
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    font-size: 1.4rem;
+    animation: gentleHeartbeat 2s infinite;
+}
+
+/* Enhanced footer */
+.secret-footer {
+    margin-top: 30px;
+    animation: fadeInUp 0.8s ease 1.6s both;
+    z-index: 2;
+    position: relative;
+}
+
+.heart-line {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.heart-line span {
+    font-size: 1.2rem;
+    animation: gentleFloat 3s ease-in-out infinite;
+}
+
+.heart-line span:nth-child(2) { animation-delay: 0.2s; }
+.heart-line span:nth-child(3) { animation-delay: 0.4s; }
+.heart-line span:nth-child(4) { animation-delay: 0.6s; }
+.heart-line span:nth-child(5) { animation-delay: 0.8s; }
+
+.secret-footer-text {
+    color: rgba(255, 143, 163, 0.9);
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.secret-signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    color: #ff6b8b;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* New animations */
+@keyframes gentleFadeIn {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(10px);
+    }
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes gentleHeartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Particles container */
+.secret-particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.secret-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background-color: rgba(255, 182, 193, 0.6);
+    border-radius: 50%;
+    animation: particleFloat 20s linear infinite;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100px) translateX(var(--random-x));
+        opacity: 0;
+    }
+}
+
+/* Mobile adjustments for secret screen */
+@media (max-width: 500px) {
+    .secret-title {
+        font-size: 2.2rem;
+    }
+    
+    .secret-message-box {
+        padding: 25px 20px;
+        min-height: 250px;
+    }
+    
+    .secret-text {
+        font-size: 1rem;
+        min-height: 200px;
+    }
+    
+    .secret-btn {
+        padding: 16px 30px;
+        font-size: 1.1rem;
+    }
+    
+    .secret-icon {
+        font-size: 2.5rem;
+    }
+    
+    .wax-seal {
+        width: 50px;
+        height: 50px;
+        bottom: -10px;
+        right: -10px;
+    }
+}
 /* ============ END OF NEW CSS - THEN YOUR EXISTING MEDIA QUERY CONTINUES ============ */
 
 @media (max-width: 350px) {
