@@ -82,8 +82,7 @@ let originalNoClickCount = 0;
          // ============ INTERACTIVE CHAT STORY SYSTEM ============
     function handleYesClick() {
         console.log("YES button clicked!");
-    // Store the current noClickCount from main game
-    originalNoClickCount = noClickCount;
+        window.originalNoClickCount = noClickCount;
     
     // Create heart burst effect
     createHeartBurst();
