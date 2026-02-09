@@ -1330,7 +1330,4 @@ if (secretHintContainer) {
         secretHintContainer.querySelector('.secret-hint-text').appendChild(desktopHint);
         desktopHint.style.display = 'block';
     }
-}
-
-                          
 });
