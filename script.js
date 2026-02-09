@@ -36,80 +36,7 @@ let currentStep = 0;
 let userChoices = [];
 let originalNoClickCount = 0;
 // ============================
-    
-    // Initialize page with background hearts and intro screen
-    function initPage() {
-        createBackgroundHearts();
-        introScreen.classList.add('active');
-    }
-    
-    // Create floating background hearts
-    function createBackgroundHearts() {
-        const heartEmojis = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💖', '💗', '💓', '💞', '💕'];
-        
-        for (let i = 0; i < 20; i++) {
-            const heart = document.createElement('div');
-            heart.classList.add('heart-bg');
-            heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
-            
-            // Random position
-            heart.style.left = `${Math.random() * 100}%`;
-            heart.style.top = `${Math.random() * 100}%`;
-            
-            // Random size
-            const size = 15 + Math.random() * 30;
-            heart.style.fontSize = `${size}px`;
-            
-            // Random animation delay and duration
-            heart.style.animationDelay = `${Math.random() * 5}s`;
-            heart.style.animationDuration = `${5 + Math.random() * 10}s`;
-            
-            heartsContainer.appendChild(heart);
-        }
-    }
-    
-    // Show the main question screen
-    function showQuestionScreen() {
-        introScreen.classList.remove('active');
-        questionScreen.classList.add('active');
-        
-        // Reset state
-        resetNoButton();
-        responseText.textContent = "Choose wisely bbg... 😼";
-    }
-    
-    // Handle YES button click
-         // ============ INTERACTIVE CHAT STORY SYSTEM ============
-    function handleYesClick() {
-        console.log("1. YES button clicked");
-        window.originalNoClickCount = noClickCount;
-        console.log("2. noClickCount stored:", noClickCount);
 
-    // Create heart burst effect
-    // createHeartBurst();
-    
-    // Create confetti
-    if (typeof createConfetti === 'function') {
-        console.log("3. Creating confetti");
-        createConfetti();
-    }
-
-    // Show stickers every time - ADD THIS CHECK
-    if (typeof createStickers === 'function') {
-        console.log("4. Creating stickers");
-        createStickers();
-    } else {
-        console.warn("createStickers function not found");
-    }
-let chatHistory = [];
-let currentStep = 0;
-let userChoices = [];
-let noClickCountFromGame = 0;
-
-// Store noClickCount from main game
-let originalNoClickCount = 0;
-
-// Chat story steps - each step can have a message, options, and next steps
 const chatStory = {
     steps: [
         // Step 0 - Initial message
@@ -279,21 +206,66 @@ const chatStory = {
     ]
 }
         };
-
+    
+    // Initialize page with background hearts and intro screen
+    function initPage() {
+        createBackgroundHearts();
+        introScreen.classList.add('active');
+    }
+    
+    // Create floating background hearts
+    function createBackgroundHearts() {
+        const heartEmojis = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💖', '💗', '💓', '💞', '💕'];
+        
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-bg');
+            heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            
+            // Random position
+            heart.style.left = `${Math.random() * 100}%`;
+            heart.style.top = `${Math.random() * 100}%`;
+            
+            // Random size
+            const size = 15 + Math.random() * 30;
+            heart.style.fontSize = `${size}px`;
+            
+            // Random animation delay and duration
+            heart.style.animationDelay = `${Math.random() * 5}s`;
+            heart.style.animationDuration = `${5 + Math.random() * 10}s`;
+            
+            heartsContainer.appendChild(heart);
+        }
+    }
+    
+    // Show the main question screen
+    function showQuestionScreen() {
+        introScreen.classList.remove('active');
+        questionScreen.classList.add('active');
+        
+        // Reset state
+        resetNoButton();
+        responseText.textContent = "Choose wisely bbg... 😼";
+    }
+    
+    // Handle YES button click
+         // ============ INTERACTIVE CHAT STORY SYSTEM ============
 // Handle YES button click - NEW VERSION
-function Click() {
+function handleYesClick() {
+   console.log("YES button clicked - Starting chat");
+    
     // Store the current noClickCount from main game
-    originalNoClickCount = noClickCount;
+    window.originalNoClickCount = noClickCount;
+    console.log("noClickCount stored:", noClickCount);
     
-    // Create heart burst effect
+    // Create visual effects
     createHeartBurst();
-    
-    // Create confetti
     createConfetti();
-
-    // Show stickers every time
-    createStickers();
     
+    // Show stickers
+    if (typeof createStickers === 'function') {
+        createStickers();
+    }
     // Update response text before transition
     const responses = [
         "Yay! I knew it! 😼❤️",
@@ -324,28 +296,27 @@ function Click() {
 
 // Initialize chat story
 function initChatStory() {
+    console.log("Initializing chat story...");
+    
     // Reset chat state
     chatHistory = [];
     currentStep = 0;
     userChoices = [];
     
-    // Clear chat display
+    // Get chat elements
     const chatDisplay = document.getElementById('chat-display');
     const optionsContainer = document.getElementById('options-container');
-    chatDisplay.innerHTML = '';
-    optionsContainer.innerHTML = '';
-
+    
     if (!chatDisplay || !optionsContainer) {
         console.error("Chat elements not found!");
         // Fallback to old YES screen
         showRatingOverlay();
         return;
     }
-    function showRatingOverlay() {
-    // Directly show rating if chat fails
-    document.querySelector('.chat-story-container').style.display = 'none';
-    document.getElementById('rating-overlay').style.display = 'flex';
-}
+    
+    // Clear chat display
+    chatDisplay.innerHTML = '';
+    optionsContainer.innerHTML = '';
     
     // Add context message
     addSystemMessage("Ayo fr? You actually clicked YES? 😭❤️");
@@ -356,11 +327,43 @@ function initChatStory() {
     }, 1000);
     
     // Add back button functionality
-    document.getElementById('back-to-question').addEventListener('click', function() {
-        if (confirm("Go back to question? Your chat progress will be lost!")) {
-            restartExperience();
-        }
-    });
+    const backButton = document.getElementById('back-to-question');
+    if (backButton) {
+        backButton.addEventListener('click', function() {
+            if (confirm("Go back to question? Your chat progress will be lost!")) {
+                restartExperience();
+            }
+        });
+    }
+    
+    console.log("Chat story initialized")
+        // Fallback function if chat fails
+function showRatingOverlay() {
+    const chatContainer = document.querySelector('.chat-story-container');
+    const ratingOverlay = document.getElementById('rating-overlay');
+    
+    if (chatContainer && ratingOverlay) {
+        chatContainer.style.display = 'none';
+        ratingOverlay.style.display = 'flex';
+    }
+}
+
+// Add system message
+function addSystemMessage(text) {
+    const chatDisplay = document.getElementById('chat-display');
+    if (!chatDisplay) return;
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message-bubble system-message';
+    messageDiv.innerHTML = `<div class="message-content"><p class="context-text">${text}</p><span class="message-time">now</span></div>`;
+    
+    chatDisplay.appendChild(messageDiv);
+    
+    // Auto scroll
+    setTimeout(() => {
+        chatDisplay.scrollTop = chatDisplay.scrollHeight;
+    }, 100);
+};
 }
 
 // Process a chat step
