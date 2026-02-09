@@ -85,14 +85,18 @@ let originalNoClickCount = 0;
         window.originalNoClickCount = noClickCount;
     
     // Create heart burst effect
-    createHeartBurst();
+    // createHeartBurst();
     
     // Create confetti
-    createConfetti();
+    if (typeof createConfetti === 'function') {
+        createConfetti();
+    }
 
     // Show stickers every time - ADD THIS CHECK
     if (typeof createStickers === 'function') {
         createStickers();
+    } else {
+        console.warn("createStickers function not found");
     }
 let chatHistory = [];
 let currentStep = 0;
