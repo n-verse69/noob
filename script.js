@@ -81,19 +81,22 @@ let originalNoClickCount = 0;
     // Handle YES button click
          // ============ INTERACTIVE CHAT STORY SYSTEM ============
     function handleYesClick() {
-        console.log("YES button clicked!");
+        console.log("1. YES button clicked");
         window.originalNoClickCount = noClickCount;
-    
+        console.log("2. noClickCount stored:", noClickCount);
+
     // Create heart burst effect
     // createHeartBurst();
     
     // Create confetti
     if (typeof createConfetti === 'function') {
+        console.log("3. Creating confetti");
         createConfetti();
     }
 
     // Show stickers every time - ADD THIS CHECK
     if (typeof createStickers === 'function') {
+        console.log("4. Creating stickers");
         createStickers();
     } else {
         console.warn("createStickers function not found");
