@@ -42,10 +42,10 @@ document.addEventListener('DOMContentLoaded', function() {
             {
                 id: 0,
                 type: "zurayn",
-                message: "Is this fr? 👀",
-                delay: 800,
+                message: "okay so... you actually clicked yes?",
+                delay: 600,
                 typingSpeed: 40,
-                nextStep: 1 // Auto advance to options
+                nextStep: 1
             },
             
             // Step 1 - Initial options
@@ -54,12 +54,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 type: "options",
                 options: [
                     {
-                        text: "Yeah, why not? 😊",
+                        text: "yeah lol why not",
                         nextStep: 2,
                         value: "positive"
                     },
                     {
-                        text: "Nope, you're dreaming 😂",
+                        text: "nah you're dreaming 😂",
                         nextStep: 3,
                         value: "negative"
                     }
@@ -71,10 +71,10 @@ document.addEventListener('DOMContentLoaded', function() {
             {
                 id: 2,
                 type: "zurayn",
-                message: "WOW! Even White Coat Man approves! 😾<br>Wait... you're not just saying that right? 👉👈",
-                delay: 300,
-                typingSpeed: 45,
-                nextStep: 4 // Continue to positive path options
+                message: "wait fr? 👀",
+                delay: 400,
+                typingSpeed: 35,
+                nextStep: 4
             },
             
             // NEGATIVE PATH
@@ -82,136 +82,137 @@ document.addEventListener('DOMContentLoaded', function() {
             {
                 id: 3,
                 type: "zurayn",
-                message: "Hatt! Think again 😾<br>You can't do this to me 😔 We're proud gay na? 🤣",
-                delay: 300,
-                typingSpeed: 50,
-                nextStep: 5 // Continue to negative path options
+                message: "bruh<br>after all those convos? 😭",
+                delay: 500,
+                typingSpeed: 40,
+                nextStep: 5
             },
             
-            // Step 4 - Options after positive (from step 2)
+            // Step 4 - Follow-up to positive
             {
                 id: 4,
                 type: "options",
                 options: [
                     {
-                        text: "I'm serious! 😤",
-                        nextStep: 6, // Go to serious response
+                        text: "yeah i'm being real",
+                        nextStep: 6,
                         value: "serious"
                     },
                     {
-                        text: "Maybe... maybe not 😏",
-                        nextStep: 7, // Go to playful response
+                        text: "idk maybe 😏",
+                        nextStep: 7,
                         value: "playful"
                     }
                 ]
             },
             
-            // Step 5 - Options after negative (from step 3)
+            // Step 5 - Follow-up to negative
             {
                 id: 5,
                 type: "options",
                 options: [
                     {
-                        text: "Okay okay, I'm kidding! 😂",
-                        nextStep: 8, // Go to kidding response
+                        text: "lmao i'm just messing with you",
+                        nextStep: 8,
                         value: "kidding"
                     },
                     {
-                        text: "Sorry, it's a no 💔",
-                        nextStep: 9, // Go to final no response
+                        text: "sorry but it's a no",
+                        nextStep: 9,
                         value: "final_no"
                     }
                 ]
             },
             
-            // Step 6 - Serious response (from "I'm serious!")
+            // Step 6 - Serious path
             {
                 id: 6,
                 type: "zurayn",
-                message: "bbg energy confirmed! ✌️😼<br>So... how hawt 🔥 am I compared to White Coat Man? Be honest 😼",
-                delay: 300,
-                typingSpeed: 45,
-                nextStep: 10, // Continue to comparison options
-                special: function() {
-                    // Add sticker after message
-                    setTimeout(() => {
-                        addStickerMessage("stickers/sticker1.png");
-                    }, 1000);
-                }
+                message: "okay okay<br>random question tho",
+                delay: 400,
+                typingSpeed: 40,
+                nextStep: 10
             },
             
-            // Step 7 - Playful response (from "Maybe... maybe not")
+            // Step 7 - Playful path
             {
                 id: 7,
                 type: "zurayn",
-                message: "Ayo for real? That's not a clear answer! 😾<br>Let me ask differently... do you at least like talking to me? 👀",
-                delay: 300,
-                typingSpeed: 50,
-                nextStep: 13 // New options for playful path
+                message: "\"maybe\" isn't an answer hazyyy 😒<br>do you like talking to me at least?",
+                delay: 500,
+                typingSpeed: 45,
+                nextStep: 13
             },
             
-            // Step 8 - Kidding response (from "Okay okay, I'm kidding!")
+            // Step 8 - Kidding response
             {
                 id: 8,
                 type: "zurayn",
-                message: "Phew! Don't scare me like that! 😭<br>So you DO like me then? 👉👈",
-                delay: 400,
+                message: "HATT don't scare me like that 💀<br>so you do like me then?",
+                delay: 500,
                 typingSpeed: 40,
-                nextStep: 14 // New confirmation options
+                nextStep: 14
             },
             
-            // Step 9 - Final no response (from "Sorry, it's a no")
+            // Step 9 - Final rejection
             {
                 id: 9,
                 type: "zurayn",
-                message: "Cyaa... you're breaking my heart 💔<br>Alright, I'll accept defeat... but you have to admit this site was kinda kool? 😼",
-                delay: 500,
-                typingSpeed: 60
-                // No nextStep - ends here, shows rating
+                message: "damn okay<br>respect for being honest i guess 🥀<br><br>but you gotta admit this site is kinda cool tho",
+                delay: 600,
+                typingSpeed: 50
+                // Ends here
             },
             
-            // Step 10 - Options after serious (comparison)
+            // Step 10 - Serious path question
             {
                 id: 10,
                 type: "options",
                 options: [
                     {
-                        text: "You're way hotter 🔥",
+                        text: "what?",
                         nextStep: 11,
-                        value: "hotter"
+                        value: "what"
                     },
                     {
-                        text: "White Coat Man wins 🥶",
-                        nextStep: 12,
-                        value: "white_coat_wins"
+                        text: "go ahead",
+                        nextStep: 11,
+                        value: "go_ahead"
                     }
                 ]
             },
             
-            // Step 11 - Hotter response (WIN!)
+            // Step 11 - The comparison
             {
                 id: 11,
                 type: "zurayn",
-                message: "YESS! 🥳 You just made my day!<br>This was fun hazyyy... now go rate my coding skills 😼✌️",
+                message: "me or white coat man? 👀",
                 delay: 300,
-                typingSpeed: 40,
-                special: function() {
-                    // Trigger confetti
-                    setTimeout(() => {
-                        createConfetti();
-                    }, 800);
-                }
-                // No nextStep - ends here, shows rating
+                typingSpeed: 35,
+                nextStep: 12
             },
             
-            // Step 12 - White coat wins (playful defeat)
+            // Step 12 - Comparison options
             {
                 id: 12,
-                type: "zurayn",
-                message: "Cyaa... I knew it 🥀<br>White Coat Man always wins huh? 😔<br>JK! I'm still your #1 billu 😼",
-                delay: 400,
-                typingSpeed: 50
-                // No nextStep - ends here, shows rating
+                type: "options",
+                options: [
+                    {
+                        text: "you obvs",
+                        nextStep: 15,
+                        value: "you_win"
+                    },
+                    {
+                        text: "white coat man lol",
+                        nextStep: 16,
+                        value: "wcm_wins"
+                    },
+                    {
+                        text: "why are you asking me this 😭",
+                        nextStep: 17,
+                        value: "confused"
+                    }
+                ]
             },
             
             // Step 13 - Playful path options
@@ -220,13 +221,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 type: "options",
                 options: [
                     {
-                        text: "Yeah, it's pretty chill 😊",
-                        nextStep: 15,
+                        text: "yeah it's chill",
+                        nextStep: 18,
                         value: "chill_yes"
                     },
                     {
-                        text: "Sometimes... when you're not being cringe 😂",
-                        nextStep: 16,
+                        text: "when you're not being cringe",
+                        nextStep: 19,
                         value: "sometimes"
                     }
                 ]
@@ -238,61 +239,91 @@ document.addEventListener('DOMContentLoaded', function() {
                 type: "options",
                 options: [
                     {
-                        text: "Yeah yeah, I like you 😊",
-                        nextStep: 17,
-                        value: "confirm_yes"
+                        text: "as a friend yeah",
+                        nextStep: 20,
+                        value: "friend"
                     },
                     {
-                        text: "As a friend, obv 🙄",
-                        nextStep: 18,
-                        value: "just_friends"
+                        text: "sure",
+                        nextStep: 21,
+                        value: "sure"
                     }
                 ]
             },
             
-            // Step 15 - Chill response
+            // Step 15 - You win response
             {
                 id: 15,
                 type: "zurayn",
-                message: "Ayee that's what I like to hear! 😼<br>Alright hazyyy, you're officially the best. Now go rate this masterpiece! ✌️",
+                message: "YESSS 😭<br>proud gay moment fr 🤣",
                 delay: 300,
-                typingSpeed: 40
-                // Ends here, shows rating
-            },
-            
-            // Step 16 - Sometimes response
-            {
-                id: 16,
-                type: "zurayn",
-                message: "CRINGE?? Blehh you're mean 😾<br>But fair... I'll take it 😂 Now rate my work!",
-                delay: 300,
-                typingSpeed: 45
-                // Ends here, shows rating
-            },
-            
-            // Step 17 - Confirm yes response
-            {
-                id: 17,
-                type: "zurayn",
-                message: "Proud gay moment! 🤣❤️<br>Okay enough wholesome stuff, go rate my coding skills now 😼",
-                delay: 300,
-                typingSpeed: 40,
+                typingSpeed: 35,
                 special: function() {
                     setTimeout(() => {
                         createConfetti();
-                    }, 500);
+                    }, 600);
                 }
-                // Ends here, shows rating
+                // Ends here
             },
             
-            // Step 18 - Just friends response
+            // Step 16 - WCM wins
+            {
+                id: 16,
+                type: "zurayn",
+                message: "knew it 💀<br>he always wins huh<br><br>jk jk i'm not even pressed",
+                delay: 500,
+                typingSpeed: 40
+                // Ends here
+            },
+            
+            // Step 17 - Confused response
+            {
+                id: 17,
+                type: "zurayn",
+                message: "idk bro i panicked 😭<br>forget i asked lmao",
+                delay: 400,
+                typingSpeed: 40
+                // Ends here
+            },
+            
+            // Step 18 - Chill response
             {
                 id: 18,
                 type: "zurayn",
-                message: "Obvvv! We r just friends hazyyy 😂<br>But you gotta admit, I'm a pretty cool friend tho 😼 Rate me!",
+                message: "ayee<br>that's what i like to hear",
                 delay: 300,
-                typingSpeed: 45
-                // Ends here, shows rating
+                typingSpeed: 35
+                // Ends here
+            },
+            
+            // Step 19 - Cringe response
+            {
+                id: 19,
+                type: "zurayn",
+                message: "CRINGE??? 💀<br>blehh you're mean<br><br>but fair i guess 😂",
+                delay: 400,
+                typingSpeed: 40
+                // Ends here
+            },
+            
+            // Step 20 - Friend response
+            {
+                id: 20,
+                type: "zurayn",
+                message: "obvvv we're just friends lol<br>proud gay and all that 🤣",
+                delay: 300,
+                typingSpeed: 40
+                // Ends here
+            },
+            
+            // Step 21 - Sure response
+            {
+                id: 21,
+                type: "zurayn",
+                message: "\"sure\" 💀<br>most enthusiastic response ever<br><br>i'll take it tho ✌️",
+                delay: 400,
+                typingSpeed: 40
+                // Ends here
             }
         ]
     };
@@ -513,7 +544,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Create message bubble
         const messageDiv = document.createElement('div');
-        messageDiv.className = `message-bubble ${sender === 'zurayn' ? 'sender' : 'receiver'}`;
+        // FIXED: Zurayn = receiver (left), User = sender (right)
+        messageDiv.className = `message-bubble ${sender === 'zurayn' ? 'receiver' : 'sender'}`;
         
         const contentDiv = document.createElement('div');
         contentDiv.className = 'message-content';
@@ -538,13 +570,13 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             chatDisplay.scrollTop = chatDisplay.scrollHeight;
             
-            // Add read receipt after a delay
-            if (sender === 'zurayn') {
+            // Add "seen just now" for USER messages only
+            if (sender === 'user') {
                 setTimeout(() => {
-                    const receipt = document.createElement('span');
-                    receipt.className = 'read-receipt';
-                    receipt.textContent = '✓✓';
-                    contentDiv.querySelector('p').appendChild(receipt);
+                    const seenText = document.createElement('span');
+                    seenText.className = 'seen-receipt';
+                    seenText.textContent = 'Seen just now';
+                    contentDiv.appendChild(seenText);
                     
                     // Mark as seen with animation
                     setTimeout(() => {
@@ -603,15 +635,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Show typing indicator
     function showTypingIndicator(show) {
-        const indicator = document.getElementById('typing-indicator');
+        const chatDisplay = document.getElementById('chat-display');
         const status = document.querySelector('.online-status');
         
         if (show) {
-            indicator.classList.add('active');
-            status.textContent = 'online • typing...';
+            // Create Instagram-style typing bubble
+            const typingBubble = document.createElement('div');
+            typingBubble.className = 'message-bubble receiver typing-bubble';
+            typingBubble.id = 'typing-bubble-indicator';
+            
+            const dotsContainer = document.createElement('div');
+            dotsContainer.className = 'typing-dots';
+            dotsContainer.innerHTML = '<span></span><span></span><span></span>';
+            
+            typingBubble.appendChild(dotsContainer);
+            chatDisplay.appendChild(typingBubble);
+            
+            // Auto scroll
+            setTimeout(() => {
+                chatDisplay.scrollTop = chatDisplay.scrollHeight;
+            }, 10);
+            
+            status.textContent = 'typing...';
         } else {
-            indicator.classList.remove('active');
-            status.textContent = 'online • just now';
+            // Remove typing bubble
+            const typingBubble = document.getElementById('typing-bubble-indicator');
+            if (typingBubble) {
+                typingBubble.remove();
+            }
+            status.textContent = 'online';
         }
     }
 
@@ -685,14 +737,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const finalMessage = document.querySelector('.final-message h4');
         const note = document.querySelector('.rating-note');
         
-        // Check if user was playful or serious
-        const seriousChoice = userChoices.find(c => c.value === 'serious');
-        const hotChoice = userChoices.find(c => c.value === 'hotter');
+        // Check user's choices for personalized message
+        const youWinChoice = userChoices.find(c => c.value === 'you_win');
+        const wcmWinsChoice = userChoices.find(c => c.value === 'wcm_wins');
+        const cringe = userChoices.find(c => c.value === 'sometimes');
         
-        if (seriousChoice && hotChoice) {
-            finalMessage.textContent = "Btw, thanks for saying I'm hotter than White Coat Man ❤️ Now rate my coding!";
+        if (youWinChoice) {
+            finalMessage.textContent = "okay now rate this whole thing (be honest tho)";
+            note.textContent = "(giving me 5 stars after saying i'm better than wcm would be kinda iconic ngl)";
+        } else if (wcmWinsChoice) {
+            finalMessage.textContent = "alright rate the site at least 😭";
+            note.textContent = "(you already said wcm > me so throw me a bone here)";
+        } else if (cringe) {
+            finalMessage.textContent = "you called me cringe but rate this anyway lol";
+            note.textContent = "(i know you're gonna give me 3 stars 💀)";
         } else if (originalNoClickCount > 5) {
-            note.textContent = "(Pick all 5 stars to make up for all those NOs! 😾)";
+            finalMessage.textContent = "NOW rate my coding after clicking NO " + originalNoClickCount + " times 😾";
+            note.textContent = "(yeah i counted. pick all 5 to apologize)";
+        } else {
+            finalMessage.textContent = "alright rate this whole experience";
+            note.textContent = "(no pressure but 5 stars would be valid)";
         }
     }
 
