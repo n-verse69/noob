@@ -591,9 +591,12 @@ document.addEventListener('DOMContentLoaded', function() {
             time: new Date()
         });
         
-        // Auto scroll to bottom
+        // Auto scroll to bottom - SMOOTH SCROLLING
         setTimeout(() => {
-            chatDisplay.scrollTop = chatDisplay.scrollHeight;
+            chatDisplay.scrollTo({
+                top: chatDisplay.scrollHeight,
+                behavior: 'smooth'
+            });
             
             // Add "seen just now" for USER messages only
             if (sender === 'user') {
@@ -606,6 +609,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Mark as seen with animation
                     setTimeout(() => {
                         messageDiv.classList.add('message-seen');
+                        // Auto scroll again after "seen" appears
+                        chatDisplay.scrollTo({
+                            top: chatDisplay.scrollHeight,
+                            behavior: 'smooth'
+                        });
                     }, 300);
                 }, 1000);
             }
@@ -1245,8 +1253,21 @@ Okay, stopping here before this gets awkward. 😂✌️`;
                     typedText.innerHTML += charHtml;
                     charIndex++;
                     
-                    // Scroll to keep text visible
-                    typedText.scrollTop = typedText.scrollHeight;
+                    // Auto-scroll both the text container AND the secret screen
+                    // Scroll the text element
+                    typedText.scrollTo({
+                        top: typedText.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Also scroll the secret screen container
+                    const secretScreen = document.getElementById('secret-screen');
+                    if (secretScreen) {
+                        secretScreen.scrollTo({
+                            top: secretScreen.scrollHeight,
+                            behavior: 'smooth'
+                        });
+                    }
                     
                     // Dynamic typing speed for natural feel
                     let speed = 30;
@@ -1278,6 +1299,17 @@ Okay, stopping here before this gets awkward. 😂✌️`;
                     
                     // Add completion effect
                     typedText.innerHTML += `<span class="typing-complete"> 💫</span>`;
+                    
+                    // Final scroll to show completion
+                    setTimeout(() => {
+                        const secretScreen = document.getElementById('secret-screen');
+                        if (secretScreen) {
+                            secretScreen.scrollTo({
+                                top: secretScreen.scrollHeight,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }, 200);
                 }
             }
             
