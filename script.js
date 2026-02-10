@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             {
                 id: 0,
                 type: "zurayn",
-                message: "okay so... you actually clicked yes?",
+                message: "Is this fr?",
                 delay: 600,
                 typingSpeed: 40,
                 nextStep: 1
@@ -425,6 +425,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Get chat elements
         const chatDisplay = document.getElementById('chat-display');
         const optionsContainer = document.getElementById('options-container');
+        const chatContainer = document.querySelector('.chat-story-container');
+        const ratingOverlay = document.getElementById('rating-overlay');
         
         if (!chatDisplay || !optionsContainer) {
             console.error("Chat elements not found!");
@@ -433,14 +435,21 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+        // Make sure chat container is visible and rating is hidden
+        if (chatContainer) {
+            chatContainer.style.display = 'flex';
+            chatContainer.style.opacity = '1';
+            chatContainer.style.transform = 'scale(1)';
+        }
+        if (ratingOverlay) {
+            ratingOverlay.style.display = 'none';
+        }
+        
         // Clear chat display
         chatDisplay.innerHTML = '';
         optionsContainer.innerHTML = '';
         
-        // Add context message
-        addSystemMessage("Ayo fr? You actually clicked YES? 😭❤️");
-        
-        // Start chat sequence
+        // Start chat sequence directly with first message
         setTimeout(() => {
             processStep(0);
         }, 1000);
@@ -449,9 +458,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const backButton = document.getElementById('back-to-question');
         if (backButton) {
             backButton.addEventListener('click', function() {
-                if (confirm("Go back to question? Your chat progress will be lost!")) {
-                    restartExperience();
+                // Reset chat state
+                chatHistory = [];
+                currentStep = 0;
+                userChoices = [];
+                
+                // Clear chat display
+                const chatDisplay = document.getElementById('chat-display');
+                if (chatDisplay) {
+                    chatDisplay.innerHTML = '';
                 }
+                
+                // Clear options
+                const optionsContainer = document.getElementById('options-container');
+                if (optionsContainer) {
+                    optionsContainer.innerHTML = '';
+                }
+                
+                // Go back to intro
+                restartExperience();
             });
         }
         
@@ -551,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function() {
         contentDiv.className = 'message-content';
         
         // Add message text with typing effect
-        contentDiv.innerHTML = `<p>${text}</p><span class="message-time">${getCurrentTime()}</span>`;
+        contentDiv.innerHTML = `<p>${text}</p>`;
         
         messageDiv.appendChild(contentDiv);
         chatDisplay.appendChild(messageDiv);
@@ -636,7 +661,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show typing indicator
     function showTypingIndicator(show) {
         const chatDisplay = document.getElementById('chat-display');
-        const status = document.querySelector('.online-status');
         
         if (show) {
             // Create Instagram-style typing bubble
@@ -655,15 +679,12 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 chatDisplay.scrollTop = chatDisplay.scrollHeight;
             }, 10);
-            
-            status.textContent = 'typing...';
         } else {
             // Remove typing bubble
             const typingBubble = document.getElementById('typing-bubble-indicator');
             if (typingBubble) {
                 typingBubble.remove();
             }
-            status.textContent = 'online';
         }
     }
 
@@ -710,26 +731,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // End chat story and show rating
     function endChatStory() {
-        // Hide chat interface
-        document.querySelector('.chat-story-container').style.opacity = '0';
-        document.querySelector('.chat-story-container').style.transform = 'scale(0.95)';
-        
-        // Show rating overlay after delay
+        // Wait 5 seconds before transitioning
         setTimeout(() => {
-            document.querySelector('.chat-story-container').style.display = 'none';
-            document.getElementById('rating-overlay').style.display = 'flex';
+            // Hide chat interface
+            document.querySelector('.chat-story-container').style.opacity = '0';
+            document.querySelector('.chat-story-container').style.transform = 'scale(0.95)';
             
-            // Add personalized message based on chat choices
-            personalizeRatingMessage();
-            
-            // Show secret hint after a delay
+            // Show rating overlay after fade
             setTimeout(() => {
-                const secretHint = document.getElementById('secret-hint-container');
-                if (secretHint) {
-                    secretHint.classList.add('show');
-                }
-            }, 2000);
-        }, 500);
+                document.querySelector('.chat-story-container').style.display = 'none';
+                document.getElementById('rating-overlay').style.display = 'flex';
+                
+                // Add personalized message based on chat choices
+                personalizeRatingMessage();
+                
+                // Show secret hint after a delay
+                setTimeout(() => {
+                    const secretHint = document.getElementById('secret-hint-container');
+                    if (secretHint) {
+                        secretHint.classList.add('show');
+                    }
+                }, 2000);
+            }, 500);
+        }, 5000); // Wait 5 seconds before showing rating
     }
 
     // Personalize rating message based on chat choices
