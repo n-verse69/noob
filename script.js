@@ -843,8 +843,8 @@ document.addEventListener('DOMContentLoaded', function() {
             "You can't do this to me 😔",
             "Hurr! But why?? 😭",
             "Blehh... that's harsh hazyyy 🥀",
-            "Cyaa... you're breaking my heart 💔",
-            "We r proud gay na? 🤣 Just kidding... but srsly 😾"
+            "cyaa... you're breaking my heart 💔",
+            "damn okay i see how it is 🥀"
         ];
         
         const randomResponse = sadResponses[Math.floor(Math.random() * sadResponses.length)];
@@ -890,7 +890,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Occasionally change button text
             if (Math.random() > 0.7) {
-                const noTexts = ["❌ NO", "😾 NO", "🥀 NO", "😭 NO", "💔 NO"];
+                const noTexts = ["❌ Nah", "😾 Stop", "🥀 Naww", "😭 Nope", "💔 No"];
                 noBtn.textContent = noTexts[Math.floor(Math.random() * noTexts.length)];
             }
         }, 600); // Move every 600ms
@@ -1150,13 +1150,16 @@ document.addEventListener('DOMContentLoaded', function() {
         let typingTimeout = null;
         let lastShakeTime = 0;
         
-        const secretMessage = `I joke a lot, but genuinely talking to you feels easy, hazyyy.
-Our chats are never planned, never serious on purpose, but somehow they fit into my day naturally.
-You're the first notification I see and the last one before the day ends, and yeah, that quietly makes a difference.
+        const secretMessage = `look, i joke around a lot but talking to you is genuinely easy. like it just flows, yk?
+our chats aren't planned or anything. they just happen naturally and somehow they're always the highlight of my day.
+you're literally the first notification i check in the morning and the last person i talk to before sleeping. and that lowkey means more to me than i probably show.
+this whole site, all the jokes, the chaos... it's just my weird way of saying you matter to me. like actually matter. 
 
-This site, the jokes, the chaos... it's just a small, coded way of saying you matter to me as a friend, more than you probably realize. ❤️
+Sometimes i wonder if we’re pretending not to notice something.
+You're a really good friend and i'm grateful you're in my life.
 
-Okay, stopping here before this gets awkward. 😂✌️`;
+Okay stopping here before this gets too deep lol ✌️
+`;
 
         // Create romantic background effects
         function createSecretBackground() {
@@ -1170,7 +1173,7 @@ Okay, stopping here before this gets awkward. 😂✌️`;
             particlesContainer.innerHTML = '';
             
             // Create floating hearts
-            const heartEmojis = ['❤️', '💖', '💗', '💓', '💞', '💕', '💌', '🌹', '🌸', '💐'];
+            const heartEmojis = ['❤️', '💖', '💗', '💓', '💞', '💕', '💌', '🌹', '🌸'];
             
             for (let i = 0; i < 15; i++) {
                 const heart = document.createElement('div');
